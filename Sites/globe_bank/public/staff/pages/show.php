@@ -18,4 +18,4 @@ $id = $_GET['id'] ?? '1'; // PHP > 7.0
 	</div>
 </div>
 
-<?php include(SHARED_PATH . '/staff/_footer.php'); ?>
+<?php include(SHARED_PATH . '/staff_footer.php'); ?>
