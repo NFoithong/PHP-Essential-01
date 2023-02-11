@@ -2,12 +2,14 @@
 
 <?php
 
-	$pages = [
-		['id' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'Global Bank'],
-		['id' => '2', 'position' => '2', 'visible' => '1', 'menu_name' => 'History'],
-		['id' => '3', 'position' => '3', 'visible' => '1', 'menu_name' => 'Leadership'],
-		['id' => '4', 'position' => '4', 'visible' => '1', 'menu_name' => 'Contact Us'],
-	];
+	$page_set = find_all_pages();
+	
+	// $pages = [
+		// ['id' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'Global Bank'],
+		// ['id' => '2', 'position' => '2', 'visible' => '1', 'menu_name' => 'History'],
+		// ['id' => '3', 'position' => '3', 'visible' => '1', 'menu_name' => 'Leadership'],
+		// ['id' => '4', 'position' => '4', 'visible' => '1', 'menu_name' => 'Contact Us'],
+	// ];
 ?>
 
 <?php $page_title = 'Pages'; ?>
@@ -25,6 +27,7 @@
 		<table class="list">
 			<tr>
 				<th>ID</th>
+				<th>Subject ID</th>
 				<th>Position</th>
 				<th>Visible</th>
 				<th>Name</th>
@@ -33,9 +36,10 @@
 				<th>&nbsp;</th>
 			</tr>
 			
-			<?php foreach($pages as $page) { ?> 
+			<?php while($page = mysqli_fetch_assoc($page_set)) { ?> 
 				<tr>
 					<td><?php echo h($page['id']); ?></td>
+					<td><?php echo h($page['subject_id']); ?></td>
 					<td><?php echo h($page['position']); ?></td>
 					<td><?php echo $page['visible'] == 1 ? 'true' : 'false'; ?></td>
 					<td><?php echo h($page['menu_name']); ?></td>
@@ -45,6 +49,8 @@
 				</tr>
 			<?php } ?>
 		</table>
+		
+		<?php mysqli_free_result($page_set); ?>
 		
 	</div>
 </div>
